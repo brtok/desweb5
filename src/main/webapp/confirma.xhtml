@@ -19,9 +19,9 @@
         <h:form>
             <div class="titulo-form">INSCRIÇÃO CONFIRMADA</div>
             Prezado(a) #{inscricaoBean.candidato.nome},
-            Seguem os dados da sua insrição
+            Seguem os dados da sua inscrição
             Idioma escolhido: #{inscricaoBean.candidato.idioma.descricao}
-            CPF: #{inscricaoBean.candidato.cpf}
+            CPF: <h:outputText converter="cpfConverter" value="#{inscricaoBean.candidato.cpf}"/>
             Data e hora: #{inscricaoBean.candidato.dataHora}
             <h:commandButton value="Voltar" action="inscricao"/>
             <h:messages/>

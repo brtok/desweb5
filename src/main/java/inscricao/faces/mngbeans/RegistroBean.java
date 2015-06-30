@@ -1,50 +1,49 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package inscricao.faces.mngbeans;
 
 import inscricao.entity.Candidato;
+import inscricao.entity.CandidatosList;
 import java.io.Serializable;
 import java.util.ArrayList;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-import utfpr.faces.support.PageBean;
+import javax.inject.Named;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
-@ManagedBean
+/**
+ *
+ * @author Bruno
+ */
+@Named("registroBean")
 @ApplicationScoped
-public class RegistroBean extends PageBean implements Serializable {
+public class RegistroBean extends utfpr.faces.support.PageBean implements Serializable {
     
-    private ArrayList<Candidato> CandidatosList = new ArrayList<>();
-    private boolean mostraCandidato = false;
-    private Candidato candidato;
-
+    private static final long serialVersionUID = 1L;
+    
+    @Inject
+    private CandidatosList candidatosList;
+    
     public ArrayList<Candidato> getCandidatosList() {
-        return CandidatosList;
+        return candidatosList.getCandidatosList();
     }
 
     public void setCandidatosList(ArrayList<Candidato> CandidatosList) {
-        this.CandidatosList = CandidatosList;
+        this.candidatosList.setCandidatosList(CandidatosList);
+    }
+
+    public RegistroBean() {
+        candidatosList = new CandidatosList();
+    }
+
+    public void addCandidato(Candidato candidato) {
+        candidatosList.add(candidato);
     }
     
-    public void excluirCandidato (Candidato cand) {
-        CandidatosList.remove(cand);
-    }
-
-    public boolean isMostraCandidato() {
-        return mostraCandidato;
-    }
-
-    public void setMostraCandidato(boolean mostraCandidato) {
-        this.mostraCandidato = mostraCandidato;
-    }
-
-    public Candidato getCandidato() {
-        return candidato;
-    }
-
-    public void setCandidato(Candidato candidato) {
-        this.candidato = candidato;
+    public void removeCandidato(Candidato candidato) {
+        candidatosList.remove(candidato);
     }
     
-    public void exibeCandidato(Candidato candidato) {
-        this.candidato = candidato;
-        mostraCandidato = true;
-    }
 }

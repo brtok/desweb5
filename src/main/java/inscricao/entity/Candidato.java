@@ -2,8 +2,8 @@ package inscricao.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 /**
@@ -14,6 +14,10 @@ public class Candidato implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long cpf;
     private String rg;
+    
+    @NotNull
+    @Size(min=3, max=50)
+    @Pattern(regexp = "^[A-Z,a-z,à-ú,À-Ú]+\\s[A-Z,a-z,à-ú,À-Ú]+[\\s,A-Z,a-z,à-ú,À-Ú]*$")
     private String nome;
     private String instituicao;
     private String programa;
